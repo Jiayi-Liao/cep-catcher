@@ -1,0 +1,41 @@
+products:
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$2$$anon$1.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$2$$anonfun$createSerializer$1.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$2.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$3.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$4.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$5.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anon$6.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase$$anonfun$1.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/CEPScalaITCase.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/Page$.class
+   cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala -> cep-scala-catcher/target/test-classes/org/apache/flink/Page.class
+binary dependencies:
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> /Users/liaojiayi/repo/junit/junit/4.4/junit-4.4.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-core/1.6.1/flink-core-1.6.1.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-scala_2.11/1.6.1/flink-scala_2.11-1.6.1.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-scala_2.11/1.6.1/flink-streaming-scala_2.11-1.6.1.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
+   cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
+source dependencies:
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala
+external dependencies:
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.cep.scala.CEP$
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.cep.scala.PatternStream
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.cep.scala.pattern.Pattern
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.cep.scala.pattern.Pattern$
+class names:
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$2
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$2$$anon$1
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$2$$anonfun$createSerializer$1
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$3
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$4
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$5
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anon$6
+   cep-scala-catcher/src/test/scala/org/apache/flink/CEPScalaITCase.scala -> org.apache.flink.CEPScalaITCase$$anonfun$1
+   cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala -> org.apache.flink.Page
+   cep-scala-catcher/src/test/scala/org/apache/flink/Page.scala -> org.apache.flink.Page$
