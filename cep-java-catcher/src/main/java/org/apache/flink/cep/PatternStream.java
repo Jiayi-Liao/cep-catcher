@@ -50,7 +50,7 @@ public class PatternStream<T> {
 	 * Side output {@code OutputTag} for late data. If no tag is set late data will be simply
 	 * dropped.
 	 */
-	private OutputTag<T> lateDataOutputTag;
+	private OutputTag<T> nfaAbandonOutputTag;
 
 	PatternStream(final DataStream<T> inputStream, final List<Pattern> patterns) {
 		this.inputStream = inputStream;
@@ -109,11 +109,11 @@ public class PatternStream<T> {
 	public <R> SingleOutputStreamOperator<R> select(final PatternSelectFunction<R> patternSelectFunction,
                                                     TypeInformation<R> outTypeInfo) {
 		return CEPOperatorUtils.createPatternStream(inputStream, patterns,
-                clean(patternSelectFunction), outTypeInfo, lateDataOutputTag);
+                clean(patternSelectFunction), outTypeInfo, nfaAbandonOutputTag);
 	}
 
-	public PatternStream<T> sideOutputLateData(OutputTag<T> outputTag) {
-		this.lateDataOutputTag = clean(outputTag);
+	public PatternStream<T> nfaAbandonData(OutputTag<T> outputTag) {
+		this.nfaAbandonOutputTag = clean(outputTag);
 		return this;
 	}
 }

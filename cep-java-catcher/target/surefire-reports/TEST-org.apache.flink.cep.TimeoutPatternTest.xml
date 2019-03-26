@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="org.apache.flink.cep.TimeoutPatternTest" time="0.272" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="org.apache.flink.cep.TimeoutPatternTest" time="0.26" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib"/>
@@ -62,5 +62,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="org.apache.flink.cep.TimeoutPatternTest" name="testTimeoutPattern" time="0.272"/>
+  <testcase classname="org.apache.flink.cep.TimeoutPatternTest" name="testTimeoutPattern" time="0.26"/>
 </testsuite>

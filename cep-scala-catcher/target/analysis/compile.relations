@@ -25,12 +25,12 @@ products:
 binary dependencies:
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/CEP.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/CEP.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
-   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/CEP.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-scala_2.11/1.6.1/flink-streaming-scala_2.11-1.6.1.jar
+   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/CEP.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-scala_2.11/1.6-GIO/flink-streaming-scala_2.11-1.6-GIO.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/CEP.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
-   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-core/1.6.1/flink-core-1.6.1.jar
-   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-scala_2.11/1.6.1/flink-streaming-scala_2.11-1.6.1.jar
+   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-core/1.6-GIO/flink-core-1.6-GIO.jar
+   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-scala_2.11/1.6-GIO/flink-streaming-scala_2.11-1.6-GIO.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/conditions/Context.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/conditions/Context.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
@@ -43,14 +43,14 @@ binary dependencies:
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/GroupPattern.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/Pattern.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/Pattern.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
-   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/Pattern.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-java_2.11/1.6.1/flink-streaming-java_2.11-1.6.1.jar
+   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/Pattern.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-streaming-java_2.11/1.6-GIO/flink-streaming-java_2.11-1.6-GIO.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/Pattern.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/package.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/package.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/pattern/package.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/scala.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/scala.scala -> cep-java-catcher/target/cep-java-catcher-1.0-SNAPSHOT.jar
-   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/scala.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-scala_2.11/1.6.1/flink-scala_2.11-1.6.1.jar
+   cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/scala.scala -> /Users/liaojiayi/repo/org/apache/flink/flink-scala_2.11/1.6-GIO/flink-scala_2.11-1.6-GIO.jar
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/scala.scala -> /Users/liaojiayi/repo/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar
 source dependencies:
    cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/CEP.scala -> cep-scala-catcher/src/main/scala/org/apache/flink/cep/scala/PatternStream.scala

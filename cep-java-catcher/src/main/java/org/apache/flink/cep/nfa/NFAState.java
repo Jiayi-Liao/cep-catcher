@@ -21,13 +21,15 @@ package org.apache.flink.cep.nfa;
 import org.apache.flink.cep.model.CountBitmap;
 import org.roaringbitmap.RoaringBitmap;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.stream.Collectors;
 
 /**
  * State kept for a {@link NFA}.
  */
-public class NFAState {
+public class NFAState implements Serializable {
 
 	private Map<ComputationState, RoaringBitmap> partialMatches;
 
@@ -83,6 +85,14 @@ public class NFAState {
 		countBitmap.add(user);
 	}
 
+	public void removeUser(ComputationState state, int user) {
+		partialMatches.get(state).remove(user);
+	}
+
+	public void removeUserInAllMatchs(int user) {
+		removeUser(user, false);
+	}
+
 	public List<Integer> removeTimeoutUsers(long lowerBoundTimestamp) {
 		return removeTimeoutUsers(lowerBoundTimestamp, false);
 	}
@@ -105,11 +115,9 @@ public class NFAState {
 	private int removeUser(int user, boolean isNotFollowType) {
 		boolean needClear = countBitmap.remove(user);
 		if (isNotFollowType) {
-			final ComputationState state = matchComputationStates(user);
-			if (state != null && state.equals(lastState)) {
+			if (partialMatches.get(lastState).contains(user)) {
 				return user;
 			}
-			return -1;
 		}
 		if (needClear) {
 			partialMatches.values().forEach(bm -> {
@@ -152,11 +160,11 @@ public class NFAState {
 		newPartialMatches.forEach(state -> this.partialMatches.put(state, new RoaringBitmap()));
 	}
 
-	public ComputationState matchComputationStates(int user) {
+	public List<ComputationState> matchComputationStates(int user) {
 		return partialMatches.entrySet().stream().filter(entry -> {
 			RoaringBitmap bm = entry.getValue();
 			return bm.contains(user);
-		}).map(Map.Entry::getKey).findFirst().orElse(null);
+		}).map(Map.Entry::getKey).collect(Collectors.toList());
 	}
 
 	@Override

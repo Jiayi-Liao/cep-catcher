@@ -62,6 +62,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="org.apache.flink.cep.model.CountBitmapTest" name="testRemove" time="0"/>
   <testcase classname="org.apache.flink.cep.model.CountBitmapTest" name="testAdd" time="0"/>
+  <testcase classname="org.apache.flink.cep.model.CountBitmapTest" name="testRemove" time="0"/>
 </testsuite>

@@ -28,6 +28,7 @@ import org.apache.flink.util.FlinkRuntimeException;
 import org.apache.flink.util.Preconditions;
 import org.roaringbitmap.RoaringBitmap;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -54,7 +55,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @see <a href="https://people.cs.umass.edu/~yanlei/publications/sase-sigmod08.pdf">
  * https://people.cs.umass.edu/~yanlei/publications/sase-sigmod08.pdf</a>
  */
-public class NFA {
+public class NFA implements Serializable {
 
 	/**
 	 * A set of all the valid NFA states, as returned by the
@@ -178,33 +179,43 @@ public class NFA {
 		boolean firstMatch = false;
 
 		int user = event.getUser();
-		ComputationState computationState = nfaState.matchComputationStates(event.getUser());
+		List<ComputationState> computationStates = nfaState.matchComputationStates(event.getUser());
 
-		if (computationState == null) {
+		if (computationStates.isEmpty()) {
 			firstMatch = true;
-			computationState = nfaState.getStartState();
+            computationStates = Collections.singletonList(nfaState.getStartState());
 		}
 
 		AtomicBoolean output = new AtomicBoolean(false);
 
-		final Collection<ComputationState> newComputationStates;
+		final List<ComputationState> newComputationStates = new ArrayList<>();
 		try {
-			newComputationStates = computeNextStates(
-				computationState,
-				event,
-				nfaState);
+            for (ComputationState computationState : computationStates) {
+                Collection<ComputationState> nextStates = computeNextStates(
+                        computationState,
+                        event,
+                        nfaState);
+                newComputationStates.addAll(nextStates);
+            }
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
-		if (newComputationStates.size() != 1) {
-			nfaState.setStateChanged();
-		} else if (!newComputationStates.iterator().next().equals(computationState)) {
-			nfaState.setStateChanged();
-		}
+		if (newComputationStates.hashCode() != computationStates.hashCode()) {
+		    nfaState.setStateChanged();
+        }
+
+//		if (newComputationStates.size() != 1) {
+//			nfaState.setStateChanged();
+//		} else if (!newComputationStates.iterator().next().equals(computationState)) {
+//			nfaState.setStateChanged();
+//		}
 
 		if (newComputationStates.stream().anyMatch(this::isFinalState)) {
 			output.set(true);
+
+			// delete this user before output
+            nfaState.removeUserInAllMatchs(user);
 		}
 
 		if (nfaState.isStateChanged() && firstMatch) {
@@ -344,23 +355,24 @@ public class NFA {
 						final ComputationState finalComputationState = nfaState.getStateByName(nextState.getName());
 						resultingComputationStates.add(finalComputationState);
 						needUpdateCurrentState = true;
-					}
+						break;
+					} else {
+                        ComputationState targetState = nfaState.getStateByName(nextState.getName());
 
-					ComputationState targetState = nfaState.getStateByName(nextState.getName());
+                        if (!isEquivalentState(edge.getTargetState(), getState(computationState))) {
+                            final State finalState = findFinalStateAfterProceed(context, nextState, event);
 
-					if (!isEquivalentState(edge.getTargetState(), getState(computationState))) {
-						final State finalState = findFinalStateAfterProceed(context, nextState, event);
-
-						if (finalState == null) {
-							addUserToState(nfaState, targetState, event.getUser());
-							resultingComputationStates.add(targetState);
-						} else {
-							final ComputationState finalComputationState = nfaState.getStateByName(finalState.getName());
-							resultingComputationStates.add(finalComputationState);
-						}
-						needUpdateCurrentState = true;
-					}
-					break;
+                            if (finalState == null) {
+                                addUserToState(nfaState, targetState, event.getUser());
+                                resultingComputationStates.add(targetState);
+                            } else {
+                                final ComputationState finalComputationState = nfaState.getStateByName(finalState.getName());
+                                resultingComputationStates.add(finalComputationState);
+                            }
+                            needUpdateCurrentState = true;
+                        }
+                        break;
+                    }
 			}
 		}
 

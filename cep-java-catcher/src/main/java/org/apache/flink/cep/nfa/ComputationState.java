@@ -18,12 +18,14 @@
 
 package org.apache.flink.cep.nfa;
 
+import java.io.Serializable;
+
 /**
  * Helper class which encapsulates the currentStateName of the NFA computation. It points to the current currentStateName,
  * the previous entry of the org.apache.flink.scala.cep.pattern, the current version and the starting timestamp
  * of the overall org.apache.flink.scala.cep.pattern.
  */
-public class ComputationState extends Object {
+public class ComputationState extends Object implements Serializable {
 	// pointer to the NFA currentStateName of the computation
 	private final String currentStateName;
 

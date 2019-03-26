@@ -2,10 +2,11 @@ package org.apache.flink.cep.model;
 
 import org.roaringbitmap.RoaringBitmap;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountBitmap {
+public class CountBitmap implements Serializable {
 
     private Map<Integer, RoaringBitmap> cntBitmap = new HashMap<>();
 

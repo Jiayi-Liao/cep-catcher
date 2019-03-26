@@ -92,6 +92,40 @@ public class CEPITCase {
         assertEquals(Collections.singletonList(optionPattern + ",3"), resultList);
     }
 
+    @Test
+    public void testRepeatPattern() throws IOException {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
+        long currentTimestamp = System.currentTimeMillis();
+
+        List<Page> pages = Arrays.asList(
+                new Page("0a1b4118dd954ec3bcc69da5138bdb96", "/feedback", 1, currentTimestamp),
+                new Page("0a1b4118dd954ec3bcc69da5138bdb96", "/register", 3, currentTimestamp),
+                new Page("0a1b4118dd954ec3bcc69da5138bdb96", "/purchase", 3, currentTimestamp),
+                new Page("0a1b4118dd954ec3bcc69da5138bdb96", "/register", 3, currentTimestamp),
+        new Page("0a1b4118dd954ec3bcc69da5138bdb96", "/purchase", 3, currentTimestamp)
+        );
+
+        Supplier<List<EventWrapper<Page>>> supplier = ArrayList::new;
+        List<EventWrapper<Page>> events = pages.stream()
+                .map(p -> new EventWrapper<>(p, p.getTimestamp(), p.getUser(), optionPattern))
+                .collect(Collectors.toCollection(supplier));
+
+        DataStream<EventWrapper<Page>> input = env.fromCollection(events).keyBy(
+                (KeySelector<EventWrapper<Page>, String>) EventWrapper::getPattern);
+
+        List<Pattern> patterns = buildPatterns();
+
+        List<String> resultList = new ArrayList<>();
+        DataStream<String> result = CEP.pattern(input, patterns)
+                .select((PatternSelectFunction<String>)
+                        matchingUser -> matchingUser.f0 + "," + matchingUser.f1.toString());
+
+        DataStreamUtils.collect(result).forEachRemaining(resultList::add);
+
+        assertEquals(Arrays.asList(optionPattern + ",3", optionPattern + ",3"), resultList);
+    }
+
 
     private List<Pattern> buildPatterns() {
         List<Pattern> patterns = new ArrayList<>();

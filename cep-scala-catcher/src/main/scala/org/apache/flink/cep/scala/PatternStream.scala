@@ -31,6 +31,11 @@ class PatternStream[T](jPatternStream: cep.PatternStream[T]) {
   def select[R: TypeInformation](patternSelectFunction: PatternSelectFunction[R]): DataStream[R] = {
     asScalaStream(jPatternStream.select(patternSelectFunction, implicitly[TypeInformation[R]]))
   }
+
+  def nfaAbandonData(outputTag: OutputTag[T]): PatternStream[T] = {
+    jPatternStream.nfaAbandonData(outputTag)
+    this
+  }
 }
 
 object PatternStream {
