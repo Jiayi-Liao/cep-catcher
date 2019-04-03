@@ -27,6 +27,8 @@ import org.apache.flink.cep.operator.AbstractKeyedCEPPatternOperator;
 import org.apache.flink.util.FlinkRuntimeException;
 import org.apache.flink.util.Preconditions;
 import org.roaringbitmap.RoaringBitmap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.*;
@@ -57,6 +59,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class NFA implements Serializable {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	/**
 	 * A set of all the valid NFA states, as returned by the
 	 * {@link NFACompiler NFACompiler}.
@@ -205,15 +208,10 @@ public class NFA implements Serializable {
 		    nfaState.setStateChanged();
         }
 
-//		if (newComputationStates.size() != 1) {
-//			nfaState.setStateChanged();
-//		} else if (!newComputationStates.iterator().next().equals(computationState)) {
-//			nfaState.setStateChanged();
-//		}
-
 		if (newComputationStates.stream().anyMatch(this::isFinalState)) {
 			output.set(true);
 
+			logger.info(String.format("Pattern: {}, output user: {}", id, user));
 			// delete this user before output
             nfaState.removeUserInAllMatchs(user);
 		}
@@ -355,6 +353,10 @@ public class NFA implements Serializable {
 						final ComputationState finalComputationState = nfaState.getStateByName(nextState.getName());
 						resultingComputationStates.add(finalComputationState);
 						needUpdateCurrentState = true;
+
+						if (logger.isDebugEnabled()) {
+							addUserToState(nfaState, finalComputationState, event.getUser());
+						}
 						break;
 					} else {
                         ComputationState targetState = nfaState.getStateByName(nextState.getName());

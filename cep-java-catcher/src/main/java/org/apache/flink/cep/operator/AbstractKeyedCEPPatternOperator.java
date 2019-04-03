@@ -35,12 +35,16 @@ import org.apache.flink.runtime.state.VoidNamespace;
 import org.apache.flink.runtime.state.VoidNamespaceSerializer;
 import org.apache.flink.runtime.state.internal.InternalMapState;
 import org.apache.flink.streaming.api.operators.*;
+import org.apache.flink.streaming.api.watermark.Watermark;
 import org.apache.flink.streaming.runtime.streamrecord.StreamRecord;
+import org.apache.flink.streaming.runtime.tasks.ProcessingTimeCallback;
 import org.apache.flink.util.OutputTag;
 import org.apache.flink.util.Preconditions;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Abstract CEP org.apache.flink.scala.cep.pattern operator for a keyed input stream. For each key, the operator creates
@@ -74,6 +78,10 @@ public abstract class AbstractKeyedCEPPatternOperator<IN, KEY, OUT, F extends Fu
 	private long lastWatermark = Long.MIN_VALUE;
 
 	private boolean isProcessingTime;
+
+	private AtomicLong lastTimestamp;
+
+	private long idleDuration = 15 * 60 * 1000;
 
 
 	/**
@@ -159,7 +167,7 @@ public abstract class AbstractKeyedCEPPatternOperator<IN, KEY, OUT, F extends Fu
 			eventWrappers.forEach(this::processEvent);
             eventBuffer.remove(timestamp);
 		}
-		lastWatermark = newWatermark;
+		lastWatermark = Math.min(newWatermark, lastWatermark);
 	}
 
 	@Override
@@ -183,6 +191,9 @@ public abstract class AbstractKeyedCEPPatternOperator<IN, KEY, OUT, F extends Fu
 	}
 
 	private void processEvent(EventWrapper eventWrapper) {
+		// set key first
+		setCurrentKey(eventWrapper.getPattern());
+		
 		String patternId = eventWrapper.getPattern();
 		NFA nfa = nfaMap.getOrDefault(patternId, null);
 		if (nfa != null) {

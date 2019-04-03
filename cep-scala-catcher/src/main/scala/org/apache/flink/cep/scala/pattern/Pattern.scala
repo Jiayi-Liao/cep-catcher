@@ -51,6 +51,10 @@ class Pattern(jPattern: JPattern) {
     jPattern.setId(id)
   }
 
+  def setTimeoutMinutes(timeoutMinutes: Long): Unit = {
+    jPattern.setTimeoutMinutes(timeoutMinutes)
+  }
+
   /**
     * @return The previous org.apache.flink.scala.cep.pattern
     */

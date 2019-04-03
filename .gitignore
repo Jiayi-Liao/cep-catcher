@@ -1,4 +1,96 @@
-.idea
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*/target/*
+
+# rails specific
+*.sqlite3
+config/database.yml
+log/*
+tmp/*
+
+# java specific
+*.class
+
+# python specific
+*.pyc
+
+# xcode/iphone specific
+build/*
+*.pbxuser
+*.mode2v3
+*.mode1v3
+*.perspective
+*.perspectivev3
+*~.nib
+
+# akka specific
+logs/*
+
+# sbt specific
+target/
+project/boot
+lib_managed/*
+project/build/target
+project/build/lib_managed
+project/build/src_managed
+project/plugins/lib_managed
+project/plugins/target
+project/plugins/src_managed
+project/plugins/project
+
+core/lib_managed
+core/target
+pubsub/lib_managed
+pubsub/target
+
+# eclipse specific
+.metadata
+jrebel.lic
+.settings
+.classpath
+.project
+
+.ensime*
+*.sublime-*
+.cache
+
+# intellij
+*.eml
 *.iml
-*target*
-cep-scala-catcher/target/
+*.ipr
+*.iws
+.*.sw?
+.idea
+
+# paulp script
+/.lib/
+
+# hive metastore
+metastore_db
+derby.log
+
+
+src/main/resources/c3p0.properties
+src/test/scala/io/growing/offline/utils/DebugOnlySuite.scala
+
+
+spark-online/data
+*.log
+
+17monipdb.dat
+
+common.conf
+
+spark-dataflow/conf/*
+
+lib/*
+!lib/capistrano
+spark-online/conf/*_test.conf
+spark-online/conf/*.gz
+spark-online/conf/*.mmdb
+
+Tests.scala

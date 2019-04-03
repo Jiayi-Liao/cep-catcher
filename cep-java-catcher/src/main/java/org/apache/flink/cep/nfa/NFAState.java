@@ -18,7 +18,6 @@
 
 package org.apache.flink.cep.nfa;
 
-import org.apache.flink.cep.model.CountBitmap;
 import org.roaringbitmap.RoaringBitmap;
 
 import java.io.Serializable;
@@ -42,8 +41,6 @@ public class NFAState implements Serializable {
 	/* minute level */
 	private NavigableMap<Long, RoaringBitmap> timeBitmap;
 
-	private CountBitmap countBitmap;
-
 	/**
 	 * Flag indicating whether the matching status of the state machine has changed.
 	 */
@@ -64,7 +61,6 @@ public class NFAState implements Serializable {
 
 		this.lastState = lastState;
 		this.timeBitmap = new ConcurrentSkipListMap<>();
-		this.countBitmap = new CountBitmap();
 	}
 
 	public ComputationState getStartState() {
@@ -82,7 +78,6 @@ public class NFAState implements Serializable {
 		}
 
 		timeBitmap.get(materializedTimestamp).add(user);
-		countBitmap.add(user);
 	}
 
 	public void removeUser(ComputationState state, int user) {
@@ -113,13 +108,16 @@ public class NFAState implements Serializable {
 	}
 
 	private int removeUser(int user, boolean isNotFollowType) {
-		boolean needClear = countBitmap.remove(user);
 		if (isNotFollowType) {
 			if (partialMatches.get(lastState).contains(user)) {
+				partialMatches.values().forEach(bm -> {
+					if (bm.contains(user)) {
+						bm.remove(user);
+					}
+				});
 				return user;
 			}
-		}
-		if (needClear) {
+		} else {
 			partialMatches.values().forEach(bm -> {
 				if (bm.contains(user)) {
 					bm.remove(user);
